@@ -1,6 +1,35 @@
+M = {}
+
+local Remap = require("config.keymaps")
+local nnoremap = Remap.nnoremap
+local vnoremap = Remap.vnoremap
+local inoremap = Remap.inoremap
+local xnoremap = Remap.xnoremap
+local nmap = Remap.nmap
+
+local opts = { noremap = true, silent = true }
+
 local keymap = vim.keymap
 local api = vim.api
 local uv = vim.loop
+
+-- Better window navigation
+api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
+api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
+api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
+api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- Naviagate buffers
+-- api.nvim_set_keymap("n", "<C-j>", ":bnext<CR>", opts)
+-- api.nvim_set_keymap("n", "<C-k>", ":bprevious<CR>", opts)
+
+-- Resize with arrows
+api.nvim_set_keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+api.nvim_set_keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+api.nvim_set_keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+api.nvim_set_keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+
 
 -- Save key strokes (now we do not need to press shift to enter command mode).
 keymap.set({ "n", "x" }, ";", ":")
